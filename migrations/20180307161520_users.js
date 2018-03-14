@@ -8,8 +8,8 @@ exports.up = function (knex, Promise) {
         table.string('gender').notNullable();
         table.string('description').notNullable();
         table.string('photo').notNullable();
-        table.decimal('latitude', 8, 8).notNullable();
-        table.decimal('longitude', 8, 8).notNullable();
+        table.decimal('latitude', 10, 5).notNullable();
+        table.decimal('longitude', 10, 5).notNullable();
         table.string('age_range').notNullable();
         table.integer('radius').notNullable();
         table.string('desired_gender').notNullable();
