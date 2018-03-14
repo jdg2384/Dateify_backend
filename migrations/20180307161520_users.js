@@ -5,7 +5,10 @@ exports.up = function(knex, Promise) {
         table.integer('spotify_id').notNullable();
         table.integer('age').notNullable();
         table.string('gender').notNullable();
+        table.string('description').notNullable();
         table.string('photo').notNullable();
+        table.decimal('latitude', 8, 8).notNullable();
+        table.decimal('longitude', 8, 8).notNullable();
         table.string('age_range').notNullable();
         table.integer('radius').notNullable();
         table.string('desired_gender').notNullable();
@@ -14,7 +17,7 @@ exports.up = function(knex, Promise) {
         // table.jsonb('thumbs_down',)
     })
 };
-      
+
 exports.down = function(knex, Promise) {
     return knex.schema.dropTable('users')
 };
