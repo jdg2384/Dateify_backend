@@ -1,4 +1,5 @@
-exports.up = function(knex, Promise) {
+// eslint-disable-next-line
+exports.up = function (knex, Promise) {
     return knex.schema.createTable('users', table => {
         table.increments('id');
         table.string('name').notNullable();
@@ -15,9 +16,10 @@ exports.up = function(knex, Promise) {
         table.jsonb('top_tracks').notNullable();
         table.jsonb('top_artists').notNullable();
         // table.jsonb('thumbs_down',)
-    })
+    });
 };
 
-exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('users')
+// eslint-disable-next-line
+exports.down = function (knex, Promise) {
+    return knex.schema.dropTable('users');
 };
