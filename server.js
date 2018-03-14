@@ -198,27 +198,61 @@ app.get('/dislikes/:id', (req, res, next) => {
 });
 
 app.post('/dislikes', (req, res, next) => {
-    const { user_id_one, dislikesUser } = req.body;
-    knex('dislikes').insert({
-        user_id_one: user_id_one,
-        dislikesUser: dislikesUser,
-    }, '*')
-    .then(() => {
-        return knex('dislikes').where({ 'user_id_one': user_id_one })
-        .returning('dislikesUser');
-    })
-    .then(match => {
-        const object = { match: false };
-        if (match[0]) {
-            object.match = true;
-            object.matchInfo = match[0];
-        }
-        res.send(object); // Ask Teddi about status not returning true
-    })
-    .catch(err => {
-        res.status(404).send(err);
-    });
+  const { user_id_one, dislikesUser } = req.body;
+  knex('dislikes').insert({
+      user_id_one: user_id_one,
+      dislikesUser: dislikesUser,
+  }, '*')
+  .then(() => {
+      return knex('dislikes').where({ 'user_id_one': user_id_one })
+      .returning('dislikesUser');
+  })
+  .then(match => {
+      const object = { match: false };
+      if (match[0]) {
+          object.match = true;
+          object.matchInfo = match[0];
+      }
+      res.send(object); // Ask Teddi about status not returning true
+  })
+  .catch(err => {
+      res.status(404).send(err);
+  });
 });
+
+// matches routes
+
+// tested on postman
+app.post('/matches', (req, res, next) => {
+  const { user_id_one, user_id_two } = req.body;
+  knex('matches').insert({
+    user_id_one,
+    user_id_two
+  })
+  .then(() => {
+    res.sendStatus(201);
+  });
+});
+
+// tested with postman
+app.get('/matches/:id', (req, res, next) => {
+  const id = req.params.id;
+  knex('matches')
+  .where('user_id_one', id)
+  .orWhere('user_id_two', id)
+  .then(data => {
+      const newData = data.map(item => item.id);
+      //console.log(newData)
+      res.send(newData);
+  })
+  .catch(err => {
+    res.status(404).json(err);
+  });
+});
+
+// messages routes
+//app.post()
+//app.get(id)
 
 // Error Routes
 app.use((err, req, res, next) => {
@@ -229,5 +263,5 @@ app.use((req, res, next) => {
     res.status(404).json({ error: { status: 404, message: 'Not found' } });
 });
 
-const listener = () => `Listening on port ${port}!`;
+const listener = () => console.log(`Listening on port ${port}!`);
 app.listen(port, listener);
