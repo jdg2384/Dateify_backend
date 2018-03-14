@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 app.get('/users', (req, res, next) => {
     knex('users')
     .then(data => {
-        res.status(200).send(data)
+        res.status(200).send(data);
     });
 });
 
@@ -225,12 +225,13 @@ app.post('/dislikes', (req, res, next) => {
 // tested on postman
 app.post('/matches', (req, res, next) => {
   const { user_id_one, user_id_two } = req.body;
-  knex('matches').insert({
-    user_id_one,
-    user_id_two
-  })
+  console.log(req.body);
+  knex('matches').insert(req.body)
   .then(() => {
     res.sendStatus(201);
+  })
+  .catch(err => {
+    res.status(404).json(err);
   });
 });
 
@@ -251,8 +252,41 @@ app.get('/matches/:id', (req, res, next) => {
 });
 
 // messages routes
-//app.post()
-//app.get(id)
+
+//tested with postman
+app.post('/messages/:id', (req, res, next) => {
+  const match_id = req.params.id;
+  const { sent_by, received_by, text } = req.body;
+  knex('messages')
+  .insert({
+    match_id,
+    sent_by,
+    received_by,
+    text
+  })
+  .then(data => {
+    res.status(201).send(data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(404).json(err);
+  });
+});
+
+//tested with postman
+app.get('/messages/:id', (req, res, next) => {
+  const match_id = req.params.id;
+  console.log(match_id);
+  knex('messages')
+  .where('match_id', match_id)
+  .returning('sent_by', 'received_by', 'text')
+  .then(data => {
+    res.status(200).send(data);
+  })
+  .catch(err => {
+    res.status(404).json(err);
+  });
+});
 
 // Error Routes
 app.use((err, req, res, next) => {
