@@ -15,6 +15,7 @@ exports.up = function (knex, Promise) {
         table.string('desired_gender').notNullable();
         table.jsonb('top_tracks').notNullable();
         table.jsonb('top_artists').notNullable();
+        table.boolean('is_initialized').notNullable().defaultsTo('false');
         // table.jsonb('thumbs_down',)
     });
 };

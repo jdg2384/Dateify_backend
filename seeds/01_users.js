@@ -29,6 +29,7 @@ exports.seed = function(knex, Promise) {
             fish: 'fish',
             fake_artist: 'fake_artist',
           },
+          is_initialized: true
         },
         {
           id: 2,
