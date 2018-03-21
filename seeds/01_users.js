@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
           description: `Because I'm a good girl, I tend to fall for the bad boy persona, and it ends up biting me in the butt. They end up not knowing how to treat me, and I end up completely devastated.`,
           latitude: 38.123435,
           longitude: -123.343423,
-          photo: 'https://media.pitchfork.com/photos/593ed188f6f585756595afc0/1:1/w_300/ad2f17a9.png',
+          photo: 'http://spotifypresave.camilacabello.com/img/camila-mobile.jpg',
           age_range: '20-30',
           radius: 30,
           desired_gender: 'female',
