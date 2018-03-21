@@ -45,7 +45,7 @@ exports.seed = function(knex, Promise) {
           },
         },
         {
-          id: 1,
+          id: 2,
           name: 'Camila',
           spotify_id: 30,
           age: 21,
