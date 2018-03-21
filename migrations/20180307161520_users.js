@@ -6,7 +6,7 @@ exports.up = function (knex, Promise) {
         table.integer('spotify_id').notNullable();
         table.integer('age').notNullable();
         table.string('gender').notNullable();
-        table.string('description').notNullable();
+        table.string('description',1000).notNullable();
         table.string('photo').notNullable();
         table.decimal('latitude', 10, 5).notNullable();
         table.decimal('longitude', 10, 5).notNullable();
