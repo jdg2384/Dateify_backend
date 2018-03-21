@@ -6,6 +6,46 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([
         {
+          id: 1,
+          name: 'Camila',
+          spotify_id: 30,
+          age: 21,
+          gender: 'Female',
+          description: `Because I'm a good girl, I tend to fall for the bad boy persona, and it ends up biting me in the butt. They end up not knowing how to treat me, and I end up completely devastated.`,
+          latitude: 38.123435,
+          longitude: -123.343423,
+          photo: 'https://i.pinimg.com/474x/19/05/9a/19059a24d4c28b6a0f9bdbe7dfd6dcd4.jpg',
+          age_range: '20-30',
+          radius: 30,
+          desired_gender: 'female',
+          match_score: 100,
+          top_tracks: {
+            "The Beatles": 'Hello',
+            "Gregory Allen": 'Stable Song',
+            "fish": 'some weird fish song',
+            "Kanye West": 'Wolves',
+            "The lumineers":'Sick in The Head',
+            "The Head and the Heart":'Another Story',
+            "Simon & Garfunkel": `Kathy's Song`,
+            "The Wood Brothers": 'Postcards From Hell',
+            "The Chainsmokers": 'Roses',
+            "Tallest Man on Earth":'Love is All'
+          },
+          top_artists: {
+            "The Beatles": 'The Beatles',
+            "Gregory Allen": 'Stable Song',
+            "fish": 'fish',
+            "Kanye West": 'Kanye West',
+            "The Lumineers":'The Lumineers',
+            "The Head and the Heart":'The Head and the Heart',
+            "Simon & Garfunkel": `Simon & Garfunkel`,
+            "The Wood Brothers": 'The Wood Brothers',
+            "The Chainsmokers": 'The Chainsmokers',
+            "Tallest Man on Earth":'Tallest Man on Earth'
+          },
+          is_initialized: true
+        },
+        {
           id: 2,
           name: 'Sophia',
           spotify_id: 98,
